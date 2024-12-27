@@ -1,0 +1,1 @@
+export const DEFAULT_PRODUCT_IMAGE = 'https://picsum.photos/200/300'; 
