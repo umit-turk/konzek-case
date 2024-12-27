@@ -1,33 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface ToastState {
-  isVisible: boolean;
-  message: string;
-  type: 'success' | 'error' | 'warning' | 'info';
-  duration: number;
-}
+import type { ToastState } from '../../types/index';
 
 const initialState: ToastState = {
   isVisible: false,
   message: '',
   type: 'info',
-  duration: 3000,
+  duration: 3000
 };
 
 const toastSlice = createSlice({
   name: 'toast',
   initialState,
   reducers: {
-    showToast: (state, action: PayloadAction<{ message: string; type?: ToastState['type']; duration?: number }>) => {
+    showToast: (state, action: PayloadAction<Omit<ToastState, 'isVisible'>>) => {
       state.isVisible = true;
       state.message = action.payload.message;
-      state.type = action.payload.type || 'info';
-      state.duration = action.payload.duration || 3000;
+      state.type = action.payload.type;
+      state.duration = action.payload.duration;
     },
     hideToast: (state) => {
       state.isVisible = false;
-    },
-  },
+    }
+  }
 });
 
 export const { showToast, hideToast } = toastSlice.actions;

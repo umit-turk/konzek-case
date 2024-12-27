@@ -1,42 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { OrderState, Order } from '../../types/index';
 
-interface OrderItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-}
-
-interface Order {
-  id: number;
-  date: string;
-  items: OrderItem[];
-  total: number;
-  status: 'Beklemede' | 'Onaylandı' | 'Kargoda' | 'Tamamlandı';
-}
-
-interface OrderState {
-  orders: Order[];
-}
 
 const initialState: OrderState = {
-  orders: [],
+    orders: [],
+    loading: false,
+    error: null,
 };
 
 const orderSlice = createSlice({
-  name: 'orders',
-  initialState,
-  reducers: {
-    addOrder: (state, action: PayloadAction<Order>) => {
-      state.orders.push(action.payload);
+    name: 'orders',
+    initialState,
+    reducers: {
+        addOrder: (state, action: PayloadAction<Order>) => {
+            state.orders.push(action.payload);
+        },
+        updateOrderStatus: (state, action: PayloadAction<{ id: number; status: Order['status'] }>) => {
+            const order = state.orders.find(order => order.id === action.payload.id);
+            if (order) {
+                order.status = action.payload.status;
+            }
+        },
     },
-    updateOrderStatus: (state, action: PayloadAction<{ id: number; status: Order['status'] }>) => {
-      const order = state.orders.find(order => order.id === action.payload.id);
-      if (order) {
-        order.status = action.payload.status;
-      }
-    },
-  },
 });
 
 export const { addOrder, updateOrderStatus } = orderSlice.actions;

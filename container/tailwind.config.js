@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -30,11 +31,53 @@ module.exports = {
           light: '#ff9800',
           dark: '#e65100',
         },
+        info: {
+          main: '#0288d1',
+          light: '#03a9f4',
+          dark: '#01579b',
+        },
         success: {
           main: '#2e7d32',
           light: '#4caf50',
           dark: '#1b5e20',
         },
+      },
+      animation: {
+        'fade-in': 'fadeIn 200ms ease-in',
+        'slide-up': 'slideUp 200ms ease-out',
+        'slide-down': 'slideDown 200ms ease-out',
+        'slide-left': 'slideLeft 200ms ease-out',
+        'slide-right': 'slideRight 200ms ease-out',
+        'shimmer': 'shimmer 2s infinite linear'
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(10px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' }
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(-10px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' }
+        },
+        slideLeft: {
+          '0%': { transform: 'translateX(10px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
+        },
+        slideRight: {
+          '0%': { transform: 'translateX(-10px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-1000px 0' },
+          '100%': { backgroundPosition: '1000px 0' }
+        }
+      },
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
     },
   },

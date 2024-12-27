@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Product } from '../../../container/src/store/slices/productSlice';
+import type { Product } from '../../../container/src/types/index';
 
 interface UseProductFiltersProps {
   products: Product[];

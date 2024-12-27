@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
-import { Product } from '../../../container/src/store/slices/productSlice';
-import { CartItem } from '../../../container/src/store/slices/cartSlice';
+import type { Product, CartItem } from '../../../container/src/types/index';
 import ProductCard from './ProductCard';
 
 interface ProductGridProps {

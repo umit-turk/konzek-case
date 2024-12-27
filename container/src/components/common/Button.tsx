@@ -1,66 +1,56 @@
-import React from 'react';
+import React, { memo } from 'react';
+import type { BaseButtonProps } from '../../types/index';
+import LoadingSpinner from './LoadingSpinner';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'contained' | 'outlined' | 'text';
-  color?: 'primary' | 'secondary' | 'error' | 'warning' | 'success';
-  size?: 'small' | 'medium' | 'large';
-  fullWidth?: boolean;
-}
+type VariantType = 'primary' | 'secondary' | 'outline' | 'text';
+type SizeType = 'small' | 'medium' | 'large';
 
-const Button: React.FC<ButtonProps> = ({
-  variant = 'contained',
-  color = 'primary',
-  size = 'medium',
-  fullWidth = false,
-  className = '',
-  children,
-  ...props
-}) => {
-  const baseClasses = 'rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
-  const sizeClasses = {
-    small: 'px-3 py-1.5 text-sm',
-    medium: 'px-4 py-2',
-    large: 'px-6 py-3 text-lg',
-  };
-
-  const variantClasses = {
-    contained: {
-      primary: 'bg-primary-main hover:bg-primary-dark text-white focus:ring-primary-main',
-      secondary: 'bg-secondary-main hover:bg-secondary-dark text-white focus:ring-secondary-main',
-      error: 'bg-error-main hover:bg-error-dark text-white focus:ring-error-main',
-      warning: 'bg-warning-main hover:bg-warning-dark text-white focus:ring-warning-main',
-      success: 'bg-success-main hover:bg-success-dark text-white focus:ring-success-main',
-    },
-    outlined: {
-      primary: 'border-2 border-primary-main text-primary-main hover:bg-primary-main hover:text-white focus:ring-primary-main',
-      secondary: 'border-2 border-secondary-main text-secondary-main hover:bg-secondary-main hover:text-white focus:ring-secondary-main',
-      error: 'border-2 border-error-main text-error-main hover:bg-error-main hover:text-white focus:ring-error-main',
-      warning: 'border-2 border-warning-main text-warning-main hover:bg-warning-main hover:text-white focus:ring-warning-main',
-      success: 'border-2 border-success-main text-success-main hover:bg-success-main hover:text-white focus:ring-success-main',
-    },
-    text: {
-      primary: 'text-primary-main hover:bg-primary-main hover:bg-opacity-10 focus:ring-primary-main',
-      secondary: 'text-secondary-main hover:bg-secondary-main hover:bg-opacity-10 focus:ring-secondary-main',
-      error: 'text-error-main hover:bg-error-main hover:bg-opacity-10 focus:ring-error-main',
-      warning: 'text-warning-main hover:bg-warning-main hover:bg-opacity-10 focus:ring-warning-main',
-      success: 'text-success-main hover:bg-success-main hover:bg-opacity-10 focus:ring-success-main',
-    },
-  };
-
-  const classes = [
-    baseClasses,
-    sizeClasses[size],
-    variantClasses[variant][color],
-    fullWidth ? 'w-full' : '',
-    className,
-  ].join(' ');
-
-  return (
-    <button className={classes} {...props}>
-      {children}
-    </button>
-  );
+const variantClasses: Record<VariantType, string> = {
+  primary: 'bg-primary-main text-white hover:bg-primary-dark',
+  secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
+  outline: 'border-2 border-primary-main text-primary-main hover:bg-primary-main hover:text-white',
+  text: 'text-primary-main hover:text-primary-dark'
 };
 
-export default Button; 
+const sizeClasses: Record<SizeType, string> = {
+  small: 'px-3 py-1 text-sm',
+  medium: 'px-4 py-2',
+  large: 'px-6 py-3 text-lg'
+};
+
+export const Button: React.FC<BaseButtonProps> = memo(({
+  children,
+  variant = 'primary',
+  size = 'medium',
+  fullWidth = false,
+  disabled = false,
+  loading = false,
+  onClick,
+  type = 'button',
+  className = ''
+}) => {
+  const baseClasses = 'rounded font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-light disabled:opacity-50 disabled:cursor-not-allowed';
+  const widthClass = fullWidth ? 'w-full' : '';
+  
+  return (
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled || loading}
+      className={`
+        ${baseClasses}
+        ${variantClasses[variant as VariantType]}
+        ${sizeClasses[size as SizeType]}
+        ${widthClass}
+        ${className}
+      `}
+    >
+      {loading ? (
+        <div className="flex items-center justify-center">
+          <LoadingSpinner size="small" />
+          <span className="ml-2">Yükleniyor...</span>
+        </div>
+      ) : children}
+    </button>
+  );
+}); 
