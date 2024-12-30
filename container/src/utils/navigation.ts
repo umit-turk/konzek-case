@@ -1,26 +1,22 @@
 import { useNavigate, NavigateOptions } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import type { UseNavigationReturn } from '../types/hooks';
 
 export const useCustomNavigate = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  return (to: string, options?: NavigateOptions) => {
-    // URL'i güncelle
+  const customNavigate: UseNavigationReturn['navigate'] = (to: string, options?: NavigateOptions) => {
     navigate(to, options);
-
-    // Analytics için event gönder
     dispatch({
       type: 'analytics/pageView',
       payload: { path: to, timestamp: new Date().toISOString() }
     });
+  };
 
-    // Loading state'i güncelle
-    dispatch({ type: 'ui/setLoading', payload: true });
-    
-    // Loading state'i temizle
-    setTimeout(() => {
-      dispatch({ type: 'ui/setLoading', payload: false });
-    }, 500);
+  return {
+    navigate: customNavigate,
+    goBack: () => navigate(-1),
+    goForward: () => navigate(1)
   };
 }; 

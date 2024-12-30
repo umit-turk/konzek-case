@@ -1,29 +1,38 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import Footer from './components/Footer';
-import Routes from './Routes';
-import Toast from './components/common/Toast';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ErrorBoundary from './components/common/ErrorBoundary';
+import { Layout } from './components/Layout';
 import LoadingSpinner from './components/common/LoadingSpinner';
+import { ProtectedRoute } from './components/ProtectedRoute';
 
-const App: React.FC = () => {
+const ProductList = React.lazy(() => import('products/ProductList'));
+const ProductDetail = React.lazy(() => import('productDetail/ProductDetail'));
+const Cart = React.lazy(() => import('cart/Cart'));
+const Auth = React.lazy(() => import('auth/Auth'));
+const Orders = React.lazy(() => import('orders/OrderHistory'));
+
+export const App: React.FC = () => {
   return (
-    <ErrorBoundary>
-      <BrowserRouter>
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-          <Navigation />
-          <main className="flex-grow container mx-auto px-4 py-8">
-            <Suspense fallback={<LoadingSpinner />}>
-              <Routes />
-            </Suspense>
-          </main>
-          <Toast />
-          <Footer />
-        </div>
-      </BrowserRouter>
-    </ErrorBoundary>
+    <BrowserRouter>
+      <ErrorBoundary>
+        <Layout>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path="/" element={<ProductList />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/cart" element={
+                  <Cart />
+              } />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/orders" element={
+                <ProtectedRoute>
+                  <Orders />
+                </ProtectedRoute>
+              } />
+            </Routes>
+          </Suspense>
+        </Layout>
+      </ErrorBoundary>
+    </BrowserRouter>
   );
-};
-
-export default React.memo(App); 
+}; 

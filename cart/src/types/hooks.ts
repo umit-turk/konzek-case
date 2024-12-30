@@ -1,13 +1,14 @@
-import type { CartItem } from '../../../container/src/types/index';
+import type { CartItem } from '../../../container/src/store/slices/cartSlice';
 
 export interface UseCartReturn {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, 'quantity'>) => void;
-  removeItem: (id: number) => void;
-  updateQuantity: (id: number, quantity: number) => void;
-  clearCart: () => void;
   total: number;
   itemCount: number;
+  isAuthenticated: boolean;
+  updateQuantity: (id: number, quantity: number) => void;
+  removeItem: (id: number) => void;
+  clearCart: () => void;
+  handleCheckout: () => void;
 }
 
 export interface UseCartValidationReturn {

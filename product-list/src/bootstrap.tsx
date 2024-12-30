@@ -2,8 +2,8 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from '../../container/src/store';
-import ProductList from './components/ProductList';
 import './index.css';
+import ProductList from './components/ProductList';
 
 // Development modunda standalone çalışabilir
 if (process.env.NODE_ENV === 'development') {

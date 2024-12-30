@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from '../../container/src/store';
-import Auth from './components/Auth';
+import  Auth  from './components/Auth';
 import './index.css';
 
 const mount = (el: Element) => {

@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-main: #1976d2;
+    --primary-light: #42a5f5;
+    --primary-dark: #1565c0;
+
+    --secondary-main: #9c27b0;
+    --secondary-light: #ba68c8;
+    --secondary-dark: #7b1fa2;
+
+    --success-main: #2e7d32;
+    --success-light: #4caf50;
+    --success-dark: #1b5e20;
+
+    --warning-main: #ed6c02;
+    --warning-light: #ff9800;
+    --warning-dark: #e65100;
+
+    --error-main: #d32f2f;
+    --error-light: #ef5350;
+    --error-dark: #c62828;
+
+    --text-primary: rgba(0, 0, 0, 0.87);
+    --text-secondary: rgba(0, 0, 0, 0.6);
+    --text-disabled: rgba(0, 0, 0, 0.38);
+
+    --background-default: #ffffff;
+    --background-paper: #ffffff;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-background-paper rounded-lg shadow-md;
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .product-image {
+    @apply w-full h-full object-cover rounded-lg;
+  }
+} 

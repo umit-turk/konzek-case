@@ -1,21 +1,23 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from '../../container/src/store';
+import './index.css';
 import OrderHistory from './components/OrderHistory';
 
-const mount = (el: Element) => {
-  const root = createRoot(el);
-  root.render(
-    <React.StrictMode>
-      <OrderHistory />
-    </React.StrictMode>
-  );
-};
-
+// Development modunda standalone çalışabilir
 if (process.env.NODE_ENV === 'development') {
   const devRoot = document.getElementById('root');
   if (devRoot) {
-    mount(devRoot);
+    const root = createRoot(devRoot);
+    root.render(
+      <Provider store={store}>
+        <OrderHistory />
+      </Provider>
+    );
   }
 }
 
-export { mount }; 
+// Container tarafından kullanılmak üzere export
+export default OrderHistory; 
+

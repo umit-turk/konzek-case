@@ -16,7 +16,12 @@ export interface CartListProps {
 export interface CartSummaryProps {
   items: CartItem[];
   onCheckout: () => void;
+  isAuthenticated: boolean;
   isLoading?: boolean;
+}
+
+export interface EmptyCartProps {
+  onStartShopping: () => void;
 }
 
 export interface QuantityInputProps {

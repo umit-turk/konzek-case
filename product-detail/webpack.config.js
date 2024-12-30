@@ -1,24 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.ts',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: 'auto',
-  },
   devServer: {
     port: 3005,
     historyApiFallback: true,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
-  },
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   module: {
     rules: [
@@ -38,6 +25,9 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+  },
   plugins: [
     new ModuleFederationPlugin({
       name: 'productDetail',
@@ -45,13 +35,32 @@ module.exports = {
       exposes: {
         './ProductDetail': './src/components/ProductDetail',
       },
-      shared: {
-        react: { singleton: true, eager: true, requiredVersion: false },
-        'react-dom': { singleton: true, eager: true, requiredVersion: false },
-        'react-router-dom': { singleton: true, requiredVersion: false },
-        '@reduxjs/toolkit': { singleton: true, requiredVersion: false },
-        'react-redux': { singleton: true, requiredVersion: false }
-      }
+      shared: [
+        {
+          react: {
+            singleton: true,
+            requiredVersion: false,
+            eager: true
+          },
+          'react-dom': {
+            singleton: true,
+            requiredVersion: false,
+            eager: true
+          },
+          'react-router-dom': {
+            singleton: true,
+            requiredVersion: false
+          },
+          '@reduxjs/toolkit': {
+            singleton: true,
+            requiredVersion: false
+          },
+          'react-redux': {
+            singleton: true,
+            requiredVersion: false
+          }
+        }
+      ]
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
