@@ -7,7 +7,7 @@ export const mockProducts: Product[] = [
       description: "Apple'ın en yeni amiral gemisi telefonu",
       price: 42999,
       image: "https://picsum.photos/400/300",
-      stock: 10
+      stock: 10,
     },
     {
       id: 2,

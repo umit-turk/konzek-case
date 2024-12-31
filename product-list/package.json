@@ -8,6 +8,7 @@
     "type-check:watch": "npm run type-check -- --watch"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@reduxjs/toolkit": "^2.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -30,6 +31,7 @@
     "html-webpack-plugin": "^5.6.3",
     "postcss": "^8.4.49",
     "postcss-loader": "^8.1.1",
+    "prettier": "^3.4.2",
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",

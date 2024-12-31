@@ -8,7 +8,9 @@
     "type-check:watch": "npm run type-check -- --watch",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,scss}\""
   },
   "main": "webpack.config.js",
   "keywords": [],
@@ -41,6 +43,7 @@
     "mini-css-extract-plugin": "^2.9.2",
     "postcss": "^8.4.49",
     "postcss-loader": "^8.1.1",
+    "prettier": "^3.4.2",
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.17",
     "ts-loader": "^9.5.1",

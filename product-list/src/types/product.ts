@@ -1,4 +1,4 @@
-import type  {Product}  from '../../../container/src/types/index';
+import type { Product } from '../../../container/src/types/index';
 
 export interface ProductCardProps {
   product: Product;
