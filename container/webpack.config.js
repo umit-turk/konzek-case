@@ -10,6 +10,9 @@ module.exports = {
   devServer: {
     port: 3000,
     historyApiFallback: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
   },
   module: {
     rules: [
@@ -33,8 +36,8 @@ module.exports = {
       remotes: {
         products: 'products@http://localhost:3001/remoteEntry.js',
         productDetail: 'productDetail@http://localhost:3005/remoteEntry.js',
-        cart: 'cart@http://localhost:3002/remoteEntry.js',
-        auth: 'auth@http://localhost:3003/remoteEntry.js',
+        cart: 'cart@http://localhost:3003/remoteEntry.js',
+        auth: 'auth@http://localhost:3002/remoteEntry.js',
         orders: 'orders@http://localhost:3004/remoteEntry.js',
       },
       shared: {
