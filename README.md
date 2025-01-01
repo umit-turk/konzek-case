@@ -1,114 +1,142 @@
-# 🛍️ E-Ticaret Micro Frontend Projesi
+# E-Ticaret Mikro Frontend Projesi
 
-Modern bir e-ticaret platformunu micro frontend mimarisi kullanarak oluşturan kapsamlı bir proje.
+## 📋 İçindekiler
+- [Genel Bakış](#-genel-bakış)
+- [Proje Yapısı](#-proje-yapısı)
+- [Başlangıç](#-başlangıç)
+- [Modüller](#-modüller)
+- [Test](#-test)
+- [Teknik Detaylar](#-teknik-detaylar)
 
-## 📋 İçerik
+## 🌟 Genel Bakış
+Bu proje, modern bir e-ticaret platformunu mikro frontend mimarisi kullanarak geliştirilmiştir. Her modül bağımsız olarak geliştirilebilir ve deploy edilebilir yapıdadır.
 
-- [Genel Bakış](#genel-bakış)
-- [Mimari](#mimari)
-- [Başlangıç](#başlangıç)
-- [Geliştirme](#geliştirme)
-- [Dağıtım](#dağıtım)
-- [Teknoloji Yığını](#teknoloji-yığını)
+## 🏗 Proje Yapısı
 
-## 🎯 Genel Bakış
+├── auth/ # Kimlik doğrulama modülü
+├── cart/ # Sepet modülü
+├── container/ # Ana uygulama
+├── order-history/ # Sipariş geçmişi modülü
+├── product-detail/ # Ürün detay modülü
+└── product-list/ # Ürün listeleme modülü
 
-Bu proje, modern web teknolojilerini kullanarak ölçeklenebilir ve bakımı kolay bir e-ticaret platformu oluşturmayı amaçlar. Micro frontend mimarisi sayesinde, farklı ekipler bağımsız olarak çalışabilir ve her bir modül ayrı ayrı deploy edilebilir.
+## 🚀 Başlangıç
 
-### 🌟 Temel Özellikler
+container'da npm start ile başlatılır.
 
-- **Ürün Yönetimi**: Kapsamlı ürün listeleme ve filtreleme
-- **Kullanıcı Yönetimi**: Güvenli kimlik doğrulama sistemi
-- **Sepet İşlemleri**: Gerçek zamanlı sepet yönetimi
-- **Sipariş Takibi**: Detaylı sipariş geçmişi ve durum takibi
-- **Responsive Tasarım**: Tüm cihazlarda optimum kullanıcı deneyimi
+## 🧰 Modüller
 
-## 🏗️ Mimari
+### 🔐 Auth Modülü (`auth/`)
+- Kullanıcı girişi/kaydı
+- Oturum yönetimi
+- Yetkilendirme kontrolleri
 
-Proje, 5 temel micro frontend'den oluşur:
+### 🛒 Cart Modülü (`cart/`)
+- Sepet işlemleri
+- Ürün miktar yönetimi
+- Toplam fiyat hesaplama
+- Sepet durumu senkronizasyonu
 
-## Başlangıç
+### 🏠 Container (`container/`)
+- Ana uygulama shell'i
+- Modül federasyonu yönetimi
+- Routing
+- Global state yönetimi
 
-### Gereksinimler
-
-- Node.js (v14+)
-- npm veya yarn
-
-### Kurulum
-
-1. Her bir micro frontend için bağımlılıkları yükleyin: 
-
-cd container && npm install
-cd ../auth && npm install
-cd ../product-list && npm install
-cd ../cart && npm install
-cd ../order-history && npm install
-
-2. Geliştirme sunucusunu başlatın:
-
-Container (Ana uygulama)
-cd container && npm start # http://localhost:3000
-Product List
-cd product-list && npm start # http://localhost:3001
-Auth
-cd auth && npm start # http://localhost:3002
-Cart
-cd cart && npm start # http://localhost:3003
-Order History
-cd order-history && npm start # http://localhost:3004
-
-## Özellikler
-
-- 🔐 Güvenli kimlik doğrulama
-- 🛍️ Ürün listesi ve filtreleme
-- 🛒 Sepet yönetimi
-- 📦 Sipariş takibi
-- 📱 Responsive tasarım
-- 🌐 Micro frontend mimarisi
-
-## Teknolojiler
-
-- React
-- TypeScript
-- Redux Toolkit
-- React Router
-- Webpack Module Federation
-- Tailwind CSS
-
-## Mimari
-
-### Container (Ana Uygulama)
-- Routing yönetimi
-- State management
-- Shared dependencies
-- Ortak bileşenler
-
-### Product List
-- Ürün listesi görüntüleme
-- Filtreleme ve arama
-- Ürün detay sayfaları
-
-### Auth
-- Kullanıcı girişi
-
-### Cart
-- Sepet yönetimi
-- Ürün ekleme/çıkarma
-- Miktar güncelleme
-
-### Order History
-- Sipariş geçmişi
+### 📜 Order History (`order-history/`)
+- Sipariş geçmişi görüntüleme
 - Sipariş detayları
-- Sipariş durumu
+- Sipariş durumu takibi
+- Boş sipariş durumu yönetimi
 
-## Katkıda Bulunma
+### 📱 Product Detail (`product-detail/`)
+- Ürün detay görüntüleme
+- Stok durumu kontrolü
+- Sepete ekleme işlemleri
+- Ürün varyasyonları
 
+### 📋 Product List (`product-list/`)
+- Ürün listesi görüntüleme
+- Filtreleme ve sıralama
+- Sayfalama
+- Hızlı sepete ekleme
+
+## 🧪 Test
+
+### E2E Testler
+
+container'da npm test ile başlatılır.
+
+Mevcut E2E testler:
+- `auth.spec.ts`: Kimlik doğrulama testleri
+- `cart.spec.ts`: Sepet işlemleri testleri
+- `order-history.spec.ts`: Sipariş geçmişi testleri
+- `product-detail.spec.ts`: Ürün detay testleri
+- `product-list.spec.ts`: Ürün listeleme testleri
+
+
+## 🛠️ Teknik Detaylar
+
+### Kullanılan Teknolojiler
+- **Frontend Framework**: React 18
+- **Dil**: TypeScript
+- **State Yönetimi**: Redux Toolkit
+- **Modül Federasyonu**: Webpack 5
+- **Stil**: Tailwind CSS
+- **Test**: 
+  - E2E: Playwright
+- **Routing**: React Router v6
+
+### State Yönetimi
+- Redux Toolkit ile merkezi state
+- LocalStorage ile kalıcı veri
+- Modüller arası state senkronizasyonu
+
+### Routing Yapısı
+
+## 💻 Geliştirme
+
+### Yeni Modül Ekleme
+1. Modül klasörü oluştur
+2. Webpack Module Federation yapılandır
+3. Container'da modülü tanımla
+4. Routing ve state entegrasyonu yap
+
+### Kod Standartları
+- ESLint kurallarına uyum
+- TypeScript strict mode
+- Component bazlı test coverage
+- Conventional commits
+
+## 🚀 Deploy
+
+### Production Build
+
+## 📝 Notlar
+
+### Geliştirme İpuçları
+- Container'ı başlatmak tüm modülleri başlatır
+- Her modül farklı portta çalışır
+- Hot reload aktif
+- Redux DevTools entegrasyonu mevcut
+
+### Bilinen Sorunlar
+- [Varsa bilinen sorunlar buraya eklenecek]
+
+### Planlanan Özellikler
+- [Gelecek özellikler buraya eklenecek]
+
+## 👥 Katkıda Bulunma
 1. Fork yapın
-2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add some amazing feature'`)
-4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
-5. Pull Request oluşturun
+2. Feature branch oluşturun
+3. Değişikliklerinizi commit edin
+4. Test yazın ve çalıştırın
+5. Pull request açın
 
-## Lisans
+## 📄 Lisans
+MIT
 
-MIT# konzek-case
+---
+Son güncelleme: [Tarih]
+
+
