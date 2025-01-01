@@ -33,20 +33,28 @@ npm install
 ```
 konzek-case klasöründe npm install komutu çalıştırılır. Bu komut otomatik olarak tüm mikroservislerin (container, auth, cart, product-list, product-detail, order-history) bağımlılıklarını yükleyecektir.
 
-## 🚀 Başlangıç
+## 🚀 Başlangıç | Getting Started
 
-Uygulamayı başlatmak için:
+Uygulamayı başlatmak için | To start the application:
 ```bash
 npm start
 ```
-container klasöründe npm start komutu çalıştırılır. Bu komut container uygulamasını başlatacak ve diğer tüm mikroservisleri otomatik olarak aşağıdaki portlarda çalıştıracaktır:
 
-- Container: http://localhost:3000
+Ana uygulama şu adreste çalışacaktır | Main application will run at:
+**http://localhost:3000**
+
+Diğer mikroservisler otomatik olarak aşağıdaki portlarda çalışacaktır | Other microservices will automatically run on the following ports:
+
+- Container (Ana Uygulama | Main Application): http://localhost:3000
 - Product List: http://localhost:3001
 - Auth: http://localhost:3002
 - Cart: http://localhost:3003
 - Order History: http://localhost:3004
 - Product Detail: http://localhost:3005
+
+> ⚠️ **Önemli Not | Important Note**: 
+> Ana uygulama her zaman http://localhost:3000 adresinde çalışmalıdır. Diğer portlar mikroservislerin geliştirme ortamında kullanılır.
+> The main application should always run on http://localhost:3000. Other ports are used for microservices in development environment.
 
 ## 🧰 Modüller
 
@@ -203,9 +211,15 @@ To start the application:
 ```bash
 npm start
 ```
-Run npm start in the container directory. This will launch the container application and automatically start all microservices on the following ports:
 
-- Container: http://localhost:3000
+The main application will run at:
+**http://localhost:3000**
+
+> ⚠️ **Important Note**: 
+> The main application (container) MUST run on port 3000 (http://localhost:3000). This is required for proper communication between microservices.
+
+Other microservices will automatically run on the following ports:
+- Container (Main Application): http://localhost:3000
 - Product List: http://localhost:3001
 - Auth: http://localhost:3002
 - Cart: http://localhost:3003
@@ -224,6 +238,62 @@ Run npm start in the container directory. This will launch the container applica
 - Product quantity management
 - Total price calculation
 - Cart state synchronization
+
+### 🏠 Container (`container/`)
+- Main application shell
+- Module federation management
+- Routing
+- Global state management
+
+### 📜 Order History (`order-history/`)
+- View order history
+- Order details
+- Order status tracking
+- Empty order state management
+
+### 📱 Product Detail (`product-detail/`)
+- Product detail view
+- Stock status check
+- Add to cart operations
+- Product variations
+
+### 📋 Product List (`product-list/`)
+- Product list view
+- Filtering and sorting
+- Pagination
+- Quick add to cart
+
+## 🧪 Testing
+
+### E2E Tests
+Run tests in the container directory with:
+```bash
+npm test
+```
+
+Available E2E tests:
+- `auth.spec.ts`: Authentication tests
+- `cart.spec.ts`: Cart operation tests
+- `order-history.spec.ts`: Order history tests
+- `product-detail.spec.ts`: Product detail tests
+- `product-list.spec.ts`: Product listing tests
+
+## 🛠️ Technical Details
+
+### Technologies Used
+- **Frontend Framework**: React 18
+- **Language**: TypeScript
+- **State Management**: Redux Toolkit
+- **Module Federation**: Webpack 5
+- **Styling**: Tailwind CSS
+- **Testing**: 
+  - E2E: Playwright
+- **Routing**: React Router v6
+
+### State Management
+- Centralized state with Redux Toolkit
+- Persistent data with LocalStorage
+- Cross-module state synchronization
 
 ## 📄 License
 MIT
