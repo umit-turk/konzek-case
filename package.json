@@ -1,0 +1,12 @@
+{
+  "name": "konzek-case",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "concurrently \"cd container && npm install\" \"cd auth && npm install\" \"cd cart && npm install\" \"cd product-list && npm install\" \"cd product-detail && npm install\" \"cd order-history && npm install\"",
+    "start": "cd container && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+} 

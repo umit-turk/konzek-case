@@ -1,8 +1,13 @@
-# E-Ticaret Mikro Frontend Projesi
+# E-Ticaret Mikro Frontend Projesi | E-Commerce Micro Frontend Project
+
+[🇹🇷 Türkçe](#tr) | [🇬🇧 English](#en)
+
+<h2 id="tr">🇹🇷 Türkçe</h2>
 
 ## 📋 İçindekiler
 - [Genel Bakış](#-genel-bakış)
 - [Proje Yapısı](#-proje-yapısı)
+- [Kurulum](#-kurulum)
 - [Başlangıç](#-başlangıç)
 - [Modüller](#-modüller)
 - [Test](#-test)
@@ -20,9 +25,28 @@ Bu proje, modern bir e-ticaret platformunu mikro frontend mimarisi kullanarak ge
 ├── product-detail/ # Ürün detay modülü
 └── product-list/ # Ürün listeleme modülü
 
+## 🚀 Kurulum
+
+1. Tüm bağımlılıkları yükleyin:
+```bash
+npm install
+```
+konzek-case klasöründe npm install komutu çalıştırılır. Bu komut otomatik olarak tüm mikroservislerin (container, auth, cart, product-list, product-detail, order-history) bağımlılıklarını yükleyecektir.
+
 ## 🚀 Başlangıç
 
-container'da npm start ile başlatılır.
+Uygulamayı başlatmak için:
+```bash
+npm start
+```
+container klasöründe npm start komutu çalıştırılır. Bu komut container uygulamasını başlatacak ve diğer tüm mikroservisleri otomatik olarak aşağıdaki portlarda çalıştıracaktır:
+
+- Container: http://localhost:3000
+- Product List: http://localhost:3001
+- Auth: http://localhost:3002
+- Cart: http://localhost:3003
+- Order History: http://localhost:3004
+- Product Detail: http://localhost:3005
 
 ## 🧰 Modüller
 
@@ -73,7 +97,6 @@ Mevcut E2E testler:
 - `order-history.spec.ts`: Sipariş geçmişi testleri
 - `product-detail.spec.ts`: Ürün detay testleri
 - `product-list.spec.ts`: Ürün listeleme testleri
-
 
 ## 🛠️ Teknik Detaylar
 
@@ -138,5 +161,74 @@ MIT
 
 ---
 Son güncelleme: [Tarih]
+
+---
+
+<h2 id="en">🇬🇧 English</h2>
+
+## 📋 Contents
+- [Overview](#-overview)
+- [Project Structure](#-project-structure)
+- [Installation](#-installation)
+- [Getting Started](#-getting-started)
+- [Modules](#-modules)
+- [Testing](#-testing)
+- [Technical Details](#-technical-details)
+
+## 🌟 Overview
+This project implements a modern e-commerce platform using micro frontend architecture. Each module can be developed and deployed independently.
+
+## 🏗 Project Structure
+
+```
+├── auth/         # Authentication module
+├── cart/         # Shopping cart module
+├── container/    # Main application shell
+├── order-history/# Order history module
+├── product-detail/# Product detail module
+└── product-list/ # Product listing module
+```
+
+## 🚀 Installation
+
+1. Install all dependencies:
+```bash
+npm install
+```
+Run npm install in the konzek-case directory. This command will automatically install dependencies for all microservices (container, auth, cart, product-list, product-detail, order-history).
+
+## 🚀 Getting Started
+
+To start the application:
+```bash
+npm start
+```
+Run npm start in the container directory. This will launch the container application and automatically start all microservices on the following ports:
+
+- Container: http://localhost:3000
+- Product List: http://localhost:3001
+- Auth: http://localhost:3002
+- Cart: http://localhost:3003
+- Order History: http://localhost:3004
+- Product Detail: http://localhost:3005
+
+## 🧰 Modules
+
+### 🔐 Auth Module (`auth/`)
+- User login/registration
+- Session management
+- Authorization controls
+
+### 🛒 Cart Module (`cart/`)
+- Cart operations
+- Product quantity management
+- Total price calculation
+- Cart state synchronization
+
+## 📄 License
+MIT
+
+---
+Last updated: [Date]
 
 
